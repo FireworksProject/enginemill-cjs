@@ -1,6 +1,7 @@
 # Enginemill CJS
 
 A JavaScript file and module loader for web browsers.
+
 Enginemill CJS is designed to be served from Node.js web frameworks like
 [Enginemill](https://github.com/FireworksProject/enginemill) and
 [Express](http://expressjs.com/).
@@ -9,7 +10,7 @@ Enginemill CJS is designed to be served from Node.js web frameworks like
 * Include your own JavaScript libraries and modules.
 * [CommonJS](http://en.wikipedia.org/wiki/CommonJS) compliant.
 * Freely mix JavaScript and CoffeeScript modules and libraries.
-* Build and minify a bundle for static deployment.
+* Bundle and minify scripts for static deployment.
 
 ## Installation
 ### Server
@@ -36,7 +37,7 @@ and not the server side loader, then you can easily install it using
 
 assuming you already have Node.js installed.
 
-## Usage
+## Usage on a Server
 
 To use the Enginemill CJS middleware in Express.js,
 load it into your application like this:
@@ -81,25 +82,25 @@ Now, suppose you have a `commonjs/` directory in the root of your application wh
 
 where the contents of the files are:
 
-#### commonjs/do-a.js
+`commonjs/do-a.js`
 
     exports.foo = function () {
         return 'foo bar';
     };
 
-#### commonjs/grade-b.js
+`commonjs/grade-b.js`
 
     exports.bar = 'foo bar';
 
-#### commonjs/lib/jquery-1.8.2.min.js
+`commonjs/lib/jquery-1.8.2.min.js`
 
     // minimized jQuery code
 
-#### commonjs/lib/jquery-slideshow.min.js
+`commonjs/lib/jquery-slideshow.min.js`
 
     // minimized slideshow plugin code
 
-#### commonjs/main.coffee
+`commonjs/main.coffee`
 
     "include ./lib/jquery-1.8.2.min.js"
     "include ./lib/jquery-slideshow.min.js"
@@ -158,11 +159,12 @@ module.declare('/main', function (require, exports) {
 require('main');
 ```
 
+## Command Line Usage
 You could build the same bundle using the command line tool for static deployment.
 This is great for deploying your JavaScript bundles out on a CDN.
 
 If you installed Enginemill CJS for use on your Node.js webserver, then you can
-build the JavaScript bundle above with
+build the JavaScript bundle above with this command in your terminal:
 
     ./node_modules/.bin/enginemill-cjs \
         --source commonjs/main.coffee \
@@ -171,7 +173,7 @@ build the JavaScript bundle above with
         --compress
 
 Or, if you installed Enginemill CJS as a command line tool globally then you
-can do the same thing with
+can do the same thing with this command:
 
     enginemill-cjs \
         --source commonjs/main.coffee \
