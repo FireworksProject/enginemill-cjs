@@ -3,7 +3,10 @@ task :default => :build
 directory 'dist'
 directory 'var'
 
-build_deps = []
+build_deps = [
+    'dist/README.md',
+    'dist/MIT-LICENSE'
+]
 desc "Build JavaScript files"
 task :build => build_deps do
     puts "build done ..."
@@ -34,6 +37,14 @@ file 'var/setup_time' => ['dev_modules', 'var'] do |task|
     File.open(task.name, 'w') do |fd|
         fd << Time.now().strftime("%Y-%m-%d %H:%M:%S")
     end
+end
+
+file 'dist/README.md' => ['README.md', 'dist'] do |task|
+    FileUtils.cp task.prerequisites.first, task.name
+end
+
+file 'dist/MIT-LICENSE' => ['MIT-LICENSE', 'dist'] do |task|
+    FileUtils.cp task.prerequisites.first, task.name
 end
 
 def npm_install(package)
