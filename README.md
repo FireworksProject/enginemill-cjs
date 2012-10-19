@@ -169,7 +169,7 @@ build the JavaScript bundle above with this command in your terminal:
     ./node_modules/.bin/enginemill-cjs \
         --source commonjs/main.coffee \
         --target /tmp/main-0.2.3.min.js.gzip \
-        --min
+        --min \
         --compress
 
 Or, if you installed Enginemill CJS as a command line tool globally then you
@@ -178,7 +178,7 @@ can do the same thing with this command:
     enginemill-cjs \
         --source commonjs/main.coffee \
         --target /tmp/main-0.2.3.min.js.gzip \
-        --min
+        --min \
         --compress
 
 You can run `enginemill-cjs --help` to learn more.
